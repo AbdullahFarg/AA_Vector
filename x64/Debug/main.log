@@ -1,0 +1,25 @@
+﻿  main.cpp
+D:\FCAI\OOP\Assignments\Assigment-3\main\main\AA_Vector.h(86,25): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\FCAI\OOP\Assignments\Assigment-3\main\main\AA_Vector.h(84): message : while compiling class template member function 'AA_Vector<int>::AA_Vector(T,int)'
+          with
+          [
+              T=int
+          ]
+D:\FCAI\OOP\Assignments\Assigment-3\main\main\main.cpp(9): message : see reference to function template instantiation 'AA_Vector<int>::AA_Vector(T,int)' being compiled
+          with
+          [
+              T=int
+          ]
+D:\FCAI\OOP\Assignments\Assigment-3\main\main\main.cpp(9): message : see reference to class template instantiation 'AA_Vector<int>' being compiled
+D:\FCAI\OOP\Assignments\Assigment-3\main\main\AA_Vector.h(147,32): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\FCAI\OOP\Assignments\Assigment-3\main\main\AA_Vector.h(145): message : while compiling class template member function 'int AA_Vector<int>::push_back(T)'
+          with
+          [
+              T=int
+          ]
+D:\FCAI\OOP\Assignments\Assigment-3\main\main\main.cpp(15): message : see reference to function template instantiation 'int AA_Vector<int>::push_back(T)' being compiled
+          with
+          [
+              T=int
+          ]
+  main.vcxproj -> D:\FCAI\OOP\Assignments\Assigment-3\main\x64\Debug\main.exe
