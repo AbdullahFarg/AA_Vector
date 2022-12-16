@@ -1,8 +1,16 @@
 #pragma once
 #include <iostream>
-using namespace std;
 
+using namespace std;
+/**
+ * @brief this is template class
+ * @tparam T 
+*/
 template<class T>
+/**
+ * @brief  vector class
+ * @tparam T 
+*/
 class AA_Vector
 {
 private:
@@ -12,7 +20,7 @@ private:
 public:
 	AA_Vector();
 	AA_Vector(int s);
-	AA_Vector(T Initialization, int size);
+	AA_Vector(T* Initialization, int size);
 	AA_Vector(const AA_Vector& v);
 	~AA_Vector();
 	int push_back(T n);
@@ -20,7 +28,11 @@ public:
 	//void erase(T* n);
 	bool operator==(const AA_Vector<T>& v);
 	void print();
-
+	/**
+	 * @brief copy assignment
+	 * @param v 
+	 * @return T*
+	*/
 	AA_Vector operator = (const AA_Vector& v)
 	{
 		if (this != &v)
@@ -37,6 +49,11 @@ public:
 
 		return *this;
 	}
+	/**
+	 * @brief move assignment
+	 * @param v 
+	 * @return T*
+	*/
 	AA_Vector operator = (const AA_Vector&& v)
 	{
 		if (this != &v)
@@ -48,6 +65,11 @@ public:
 		}
 		return *this;
 	}
+	/**
+	 * @brief overlode [] operator
+	 * @param i 
+	 * @return *T
+	*/
 	T& operator [] (int i)
 	{
 		return (ptr[i]);
@@ -56,7 +78,10 @@ public:
 
 };
 
-
+/**
+ * @brief empty constractor
+ * @tparam T 
+*/
 template<class T>
 AA_Vector<T>::AA_Vector()
 {
@@ -64,7 +89,11 @@ AA_Vector<T>::AA_Vector()
 	ptr = nullptr;
 	vector_capacity = 0;
 }
-
+/**
+ * @brief paramitaraize constractor
+ * @tparam T 
+ * @param s the size of vector
+*/
 template<class T>
 AA_Vector<T>::AA_Vector(int s)
 {
@@ -78,19 +107,28 @@ AA_Vector<T>::AA_Vector(int s)
 	}
 }
 
-
+/**
+ * @brief Initialization the vector by an array
+ * @tparam T 
+ * @param Initialization the array 
+ * @param size the size of array
+*/
 template<class T>
-AA_Vector<T>::AA_Vector(T Initialization, int size)
+AA_Vector<T>::AA_Vector(T* Initialization, int size)
 {
 	vector_size = size;
 	vector_capacity = size * 1.5;
 	ptr = new T[vector_capacity];
 	for (int i = 0; i < size; i++)
 	{
-		ptr[i] = Initialization;
+		ptr[i] = Initialization[i];
 	}
 }
-
+/**
+ * @brief copy constractor
+ * @tparam T 
+ * @param v the vector that we take a copy from it
+*/
 template<class T>
 AA_Vector<T>::AA_Vector(const AA_Vector& v)
 {
@@ -102,13 +140,21 @@ AA_Vector<T>::AA_Vector(const AA_Vector& v)
 		ptr[i] = v.ptr[i];
 	}
 }
-
+/**
+ * @brief destractor
+ * @tparam T 
+*/
 template<class T>
 AA_Vector<T>::~AA_Vector()
 {
 	delete[] ptr;
 }
-
+/**
+ * @brief overlode == operator
+ * @tparam T 
+ * @param v 
+ * @return bool
+*/
 template<class T>
 inline bool AA_Vector<T>::operator==(const AA_Vector<T>& v)
 {
@@ -130,7 +176,10 @@ inline bool AA_Vector<T>::operator==(const AA_Vector<T>& v)
 		ok = false;
 	return ok;
 }
-
+/**
+ * @brief ptint the vector
+ * @tparam T 
+*/
 template<class T>
 void AA_Vector<T>::print()
 {
@@ -139,7 +188,12 @@ void AA_Vector<T>::print()
 		cout << ptr[i] << endl;
 	}
 }
-
+/**
+ * @brief add elemint to vector from behind
+ * @tparam T 
+ * @param n the elemint
+ * @return int
+*/
 template<class T>
 inline int AA_Vector<T>::push_back(T n)
 {
@@ -148,7 +202,11 @@ inline int AA_Vector<T>::push_back(T n)
 	ptr[vector_size - 1] = n;
 	return 0;
 }
-
+/**
+ * @brief delete an elemint form behind
+ * @tparam T 
+ * @return T
+*/
 template<class T>
 inline T AA_Vector<T>::pop_back()
 {
@@ -163,5 +221,6 @@ inline void AA_Vector<T>::erase(T* n)
 
 }
 */
+
 
 

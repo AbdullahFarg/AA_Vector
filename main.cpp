@@ -2,12 +2,15 @@
 #include <iostream>
 using namespace std;
 #include"AA_Vector.h"
-
+/**
+ * @brief main function
+ * @return int
+*/
 int main()
 {
-    
-    AA_Vector <int>v(0, 4);
-    AA_Vector <int>v2(2, 4);
+    int arr[5] = { 1,2,3,4,5 };
+    AA_Vector <int>v(arr, 4);
+    AA_Vector <int>v2(arr, 4);
     AA_Vector <int>v3(v2);
     cout << "______________" << "print_vector" << "_______________"<<endl;
     v.print();
