@@ -48,4 +48,11 @@ int main()
     printf("________________[insert(iterator, n)]_______________\n");
     v2.insert(v2.begin(), 8);
     v2.print();
+    printf("________________[operator (<)]_______________\n");
+    if (v3 < v2)
+        cout << "True" << endl;
+    else
+    {
+        cout << "False" << endl;
+    }
 }

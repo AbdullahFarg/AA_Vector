@@ -34,6 +34,7 @@ public:
 	iterator begin() { return iterator(&ptr[0]); }
 	iterator end() { return iterator(&ptr[vector_size]); }
 	bool operator==(const AA_Vector<T>& v);
+	bool operator<(const AA_Vector<T>& v);
 	void print();
 	/**
 	 * @brief copy assignment
@@ -181,6 +182,17 @@ inline bool AA_Vector<T>::operator==(const AA_Vector<T>& v)
 	else
 		ok = false;
 	return ok;
+}
+template<class T>
+inline bool AA_Vector<T>::operator<(const AA_Vector<T>& v)
+{
+	if (vector_size < v.vector_size) return true;
+	if (vector_size == v.vector_size) {
+		for (int i = 0; i < vector_size; ++i) {
+			if (ptr[i] < v.ptr[i]) return true;
+		}
+	}
+	return false;
 }
 /**
  * @brief ptint the vector
