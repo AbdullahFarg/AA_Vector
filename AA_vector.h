@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include<iterator>
 
 using namespace std;
 /**
@@ -13,6 +14,7 @@ template<class T>
 */
 class AA_Vector
 {
+using iterator = T*;
 private:
 	T* ptr;
 	int vector_size;
@@ -26,6 +28,8 @@ public:
 	int push_back(T n);
 	T pop_back();
 	//void erase(T* n);
+	iterator begin() { return iterator(&ptr[0]); }
+	iterator end() { return iterator(&ptr[vector_size - 1]); }
 	bool operator==(const AA_Vector<T>& v);
 	void print();
 	/**

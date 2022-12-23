@@ -1,4 +1,3 @@
-
 #include <iostream>
 using namespace std;
 #include"AA_Vector.h"
@@ -12,7 +11,8 @@ int main()
     AA_Vector <int>v(arr, 4);
     AA_Vector <int>v2(arr, 4);
     AA_Vector <int>v3(v2);
-    cout << "______________" << "print_vector" << "_______________"<<endl;
+    printf("-----------------------{ABDULLAH}-----------------------\n");
+    cout << "______________" << "print_vector" << "_______________" << endl;
     v.print();
     cout << "______________" << "Push_back(5)(6)" << "_______________" << endl;
     v.push_back(5);
@@ -28,6 +28,11 @@ int main()
     {
         cout << "False" << endl;
     }
-
+    printf("-----------------------{ADHAM}--------------------------\n");
+    printf("__________________[iterator begin()]______________\n");
+    auto it = v.begin();
+    cout << *it << endl;
+    printf("__________________[iterator end()]________________\n");
+    it = v.end();
+    cout << *it << endl;
 }
-
