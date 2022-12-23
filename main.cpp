@@ -45,4 +45,7 @@ int main()
     v.clear();
     //v.print();
     printf("NULL\n");
+    printf("________________[insert(iterator, n)]_______________\n");
+    v2.insert(v2.begin(), 8);
+    v2.print();
 }

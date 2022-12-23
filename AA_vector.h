@@ -27,6 +27,7 @@ public:
 	~AA_Vector();
 	int push_back(T n);
 	T pop_back();
+	void insert(iterator, T);
 	void erase(iterator it);
 	void erase(iterator it1, iterator it2);
 	void clear();
@@ -217,6 +218,21 @@ inline T AA_Vector<T>::pop_back()
 {
 	vector_size--;
 	return ptr[vector_size - 1];
+}
+
+template<class T>
+inline void AA_Vector<T>::insert(iterator it, T n)
+{
+	if (it < begin() || it >= end()) {
+		cout << "Invalid iterator!\n";
+		return;
+	}
+	vector_size++;
+	ptr[vector_size - 1] = 0;
+	for (auto i = vector_size - 2; i >= it - begin(); --i) {
+		ptr[i + 1] = ptr[i];
+	}
+	ptr[it - begin()] = n;
 }
 
 template<class T>
