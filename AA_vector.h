@@ -31,6 +31,7 @@ public:
 	void erase(iterator it);
 	void erase(iterator it1, iterator it2);
 	void clear();
+	bool empty();
 	iterator begin() { return iterator(&ptr[0]); }
 	iterator end() { return iterator(&ptr[vector_size]); }
 	bool operator==(const AA_Vector<T>& v);
@@ -272,6 +273,13 @@ inline void AA_Vector<T>::clear()
 	ptr = nullptr;
 	vector_capacity = 0;
 	vector_size = 0;
+}
+
+template<class T>
+inline bool AA_Vector<T>::empty()
+{
+	if (vector_size == 0) return true;
+	return false;
 }
 
 template<class T>
