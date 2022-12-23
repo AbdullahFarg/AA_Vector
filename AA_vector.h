@@ -7,6 +7,8 @@ using namespace std;
  * @brief this is template class
  * @tparam T
 */
+template <typename T> class AA_Vector;
+template <typename T> ostream& operator<<(ostream& out, const AA_Vector<T>& vec);
 template<class T>
 /**
  * @brief  vector class
@@ -32,10 +34,14 @@ public:
 	void erase(iterator it1, iterator it2);
 	void clear();
 	bool empty();
+	int resize();
+	int size();
+	int capacity();
 	iterator begin() { return iterator(&ptr[0]); }
 	iterator end() { return iterator(&ptr[vector_size]); }
 	bool operator==(const AA_Vector<T>& v);
 	bool operator<(const AA_Vector<T>& v);
+	friend ostream& operator<< <T>(ostream& out, const AA_Vector<T>& vec);
 	void print();
 	/**
 	 * @brief copy assignment
@@ -283,6 +289,30 @@ inline bool AA_Vector<T>::empty()
 }
 
 template<class T>
+inline int AA_Vector<T>::resize()
+{
+	int sz = vector_size;
+	vector_size *= 2;
+	vector_capacity = vector_size * 1.5;
+	//for (int i = sz; i < vector_size; ++i) {
+	//	ptr[i] = 0;
+	//}
+	return 0;
+}
+
+template<class T>
+inline int AA_Vector<T>::size()
+{
+	return vector_size;
+}
+
+template<class T>
+inline int AA_Vector<T>::capacity()
+{
+	return vector_capacity;
+}
+
+template<class T>
 inline void AA_Vector<T>::erase(iterator it)
 {
 	if (it >= end() || it < begin()) {
@@ -290,4 +320,13 @@ inline void AA_Vector<T>::erase(iterator it)
 		return;
 	}
 	AA_Vector::erase(it, it);
+}
+
+template<typename T>
+inline ostream& operator<<(ostream& out, const AA_Vector<T>& vec) {
+	for (int i = 0; i < vec.vector_size; ++i) {
+		out << vec.ptr[i] << "  ";
+	}
+	cout << endl;
+	return out;
 }

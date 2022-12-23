@@ -58,4 +58,7 @@ int main()
     printf("______________________[empty()]_____________________\n");
     if (v2.empty()) printf("True\n");
     else printf("False\n");
+    printf("_____________________[resize(n)]____________________\n");
+    v3.resize();
+    v3.print();
 }
