@@ -1,20 +1,20 @@
 #pragma once
 #include <iostream>
-#include<iterator>
-
+#include <iterator>
 using namespace std;
+
 /**
  * @brief this is template class
- * @tparam T 
+ * @tparam T
 */
 template<class T>
 /**
  * @brief  vector class
- * @tparam T 
+ * @tparam T
 */
 class AA_Vector
 {
-using iterator = T*;
+	using iterator = T*;
 private:
 	T* ptr;
 	int vector_size;
@@ -27,14 +27,16 @@ public:
 	~AA_Vector();
 	int push_back(T n);
 	T pop_back();
-	//void erase(T* n);
+	void erase(iterator it);
+	void erase(iterator it1, iterator it2);
+	void clear();
 	iterator begin() { return iterator(&ptr[0]); }
-	iterator end() { return iterator(&ptr[vector_size - 1]); }
+	iterator end() { return iterator(&ptr[vector_size]); }
 	bool operator==(const AA_Vector<T>& v);
 	void print();
 	/**
 	 * @brief copy assignment
-	 * @param v 
+	 * @param v
 	 * @return T*
 	*/
 	AA_Vector operator = (const AA_Vector& v)
@@ -55,7 +57,7 @@ public:
 	}
 	/**
 	 * @brief move assignment
-	 * @param v 
+	 * @param v
 	 * @return T*
 	*/
 	AA_Vector operator = (const AA_Vector&& v)
@@ -71,20 +73,18 @@ public:
 	}
 	/**
 	 * @brief overlode [] operator
-	 * @param i 
+	 * @param i
 	 * @return *T
 	*/
 	T& operator [] (int i)
 	{
 		return (ptr[i]);
 	}
-	
-
 };
 
 /**
  * @brief empty constractor
- * @tparam T 
+ * @tparam T
 */
 template<class T>
 AA_Vector<T>::AA_Vector()
@@ -95,7 +95,7 @@ AA_Vector<T>::AA_Vector()
 }
 /**
  * @brief paramitaraize constractor
- * @tparam T 
+ * @tparam T
  * @param s the size of vector
 */
 template<class T>
@@ -106,15 +106,15 @@ AA_Vector<T>::AA_Vector(int s)
 	ptr = new T[vector_capacity];
 	for (int i = 0; i < vector_size; i++)
 	{
-		
+
 		ptr[i] = 0;
 	}
 }
 
 /**
  * @brief Initialization the vector by an array
- * @tparam T 
- * @param Initialization the array 
+ * @tparam T
+ * @param Initialization the array
  * @param size the size of array
 */
 template<class T>
@@ -130,7 +130,7 @@ AA_Vector<T>::AA_Vector(T* Initialization, int size)
 }
 /**
  * @brief copy constractor
- * @tparam T 
+ * @tparam T
  * @param v the vector that we take a copy from it
 */
 template<class T>
@@ -146,17 +146,18 @@ AA_Vector<T>::AA_Vector(const AA_Vector& v)
 }
 /**
  * @brief destractor
- * @tparam T 
+ * @tparam T
 */
 template<class T>
 AA_Vector<T>::~AA_Vector()
 {
 	delete[] ptr;
 }
+
 /**
  * @brief overlode == operator
- * @tparam T 
- * @param v 
+ * @tparam T
+ * @param v
  * @return bool
 */
 template<class T>
@@ -182,7 +183,7 @@ inline bool AA_Vector<T>::operator==(const AA_Vector<T>& v)
 }
 /**
  * @brief ptint the vector
- * @tparam T 
+ * @tparam T
 */
 template<class T>
 void AA_Vector<T>::print()
@@ -194,7 +195,7 @@ void AA_Vector<T>::print()
 }
 /**
  * @brief add elemint to vector from behind
- * @tparam T 
+ * @tparam T
  * @param n the elemint
  * @return int
 */
@@ -208,7 +209,7 @@ inline int AA_Vector<T>::push_back(T n)
 }
 /**
  * @brief delete an elemint form behind
- * @tparam T 
+ * @tparam T
  * @return T
 */
 template<class T>
@@ -218,13 +219,39 @@ inline T AA_Vector<T>::pop_back()
 	return ptr[vector_size - 1];
 }
 
-/*
 template<class T>
-inline void AA_Vector<T>::erase(T* n)
+inline void AA_Vector<T>::erase(iterator it1, iterator it2)
 {
-
+	if (it1 == it2) it2++;
+	if (it1 >= end() || it1 < begin() || it2 >= end() || it2 < begin() || it1 > it2) {
+		cout << "Invalid iterator!\n";
+		return;
+	}
+	if (it1 < it2) {
+		for (auto i = it1, j = it2; j != end(); j++, i++) {
+			*i = *j;
+		}
+		auto k = it2 - it1;
+		vector_size -= k;
+	}
 }
-*/
 
+template<class T>
+inline void AA_Vector<T>::clear()
+{
+	if (ptr != nullptr)
+		delete[] ptr;
+	ptr = nullptr;
+	vector_capacity = 0;
+	vector_size = 0;
+}
 
-
+template<class T>
+inline void AA_Vector<T>::erase(iterator it)
+{
+	if (it >= end() || it < begin()) {
+		cout << "Invalid iterator!\n";
+		return;
+	}
+	AA_Vector::erase(it, it);
+}

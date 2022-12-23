@@ -21,6 +21,9 @@ int main()
     cout << "______________" << "pop_back()" << "_______________" << endl;
     v.pop_back();
     v.print();
+    printf("____________________[earase(it1)]____________________\n");
+    v.erase(v.begin());
+    v.print();
     cout << "______________" << "if (v3 == v2)" << "_______________" << endl;
     if (v3 == v2)
         cout << "True" << endl;
@@ -29,10 +32,17 @@ int main()
         cout << "False" << endl;
     }
     printf("-----------------------{ADHAM}--------------------------\n");
-    printf("__________________[iterator begin()]______________\n");
+    printf("__________________[iterator begin()]________________\n");
     auto it = v.begin();
     cout << *it << endl;
-    printf("__________________[iterator end()]________________\n");
-    it = v.end();
+    printf("__________________[iterator end()]__________________\n");
+    it = v.end() - 1;
     cout << *it << endl;
+    printf("__________________[earase(it1, it2)]________________\n");
+    v.erase(v.begin() + 1, v.end() - 1);
+    v.print();
+    printf("_______________________[clear()]____________________\n");
+    v.clear();
+    //v.print();
+    printf("NULL\n");
 }
