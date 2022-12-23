@@ -102,6 +102,7 @@ AA_Vector<T>::AA_Vector()
 	ptr = nullptr;
 	vector_capacity = 0;
 }
+
 /**
  * @brief paramitaraize constractor
  * @tparam T
@@ -137,6 +138,7 @@ AA_Vector<T>::AA_Vector(T* Initialization, int size)
 		ptr[i] = Initialization[i];
 	}
 }
+
 /**
  * @brief copy constractor
  * @tparam T
@@ -153,6 +155,7 @@ AA_Vector<T>::AA_Vector(const AA_Vector& v)
 		ptr[i] = v.ptr[i];
 	}
 }
+
 /**
  * @brief destractor
  * @tparam T
@@ -190,6 +193,14 @@ inline bool AA_Vector<T>::operator==(const AA_Vector<T>& v)
 		ok = false;
 	return ok;
 }
+
+/**
+ * @brief // Compares item by item 
+		  // Return true if first different item in this is < in other
+ * @tparam T 
+ * @param v 1st parameter
+ * @return bool
+*/
 template<class T>
 inline bool AA_Vector<T>::operator<(const AA_Vector<T>& v)
 {
@@ -201,6 +212,7 @@ inline bool AA_Vector<T>::operator<(const AA_Vector<T>& v)
 	}
 	return false;
 }
+
 /**
  * @brief ptint the vector
  * @tparam T
@@ -213,6 +225,7 @@ void AA_Vector<T>::print()
 		cout << ptr[i] << endl;
 	}
 }
+
 /**
  * @brief add elemint to vector from behind
  * @tparam T
@@ -227,6 +240,7 @@ inline int AA_Vector<T>::push_back(T n)
 	ptr[vector_size - 1] = n;
 	return 0;
 }
+
 /**
  * @brief delete an elemint form behind
  * @tparam T
@@ -239,6 +253,13 @@ inline T AA_Vector<T>::pop_back()
 	return ptr[vector_size - 1];
 }
 
+/**
+ * @brief // Insert item at iterator  
+		  // Throw exception if invalid 
+ * @tparam T 
+ * @param it 1st parameter
+ * @param n 2nd parameter
+*/
 template<class T>
 inline void AA_Vector<T>::insert(iterator it, T n)
 {
@@ -254,6 +275,14 @@ inline void AA_Vector<T>::insert(iterator it, T n)
 	ptr[it - begin()] = n;
 }
 
+/**
+ * @brief Remove items between  
+// iterator 1 <= iterator 2 otherwise do nothing 
+// Throw exception if any iterator outside range 
+ * @tparam T 
+ * @param it1 1st parameter
+ * @param it2 2nd parameter
+*/
 template<class T>
 inline void AA_Vector<T>::erase(iterator it1, iterator it2)
 {
@@ -271,6 +300,10 @@ inline void AA_Vector<T>::erase(iterator it1, iterator it2)
 	}
 }
 
+/**
+ * @brief  Delete all vector content
+ * @tparam T 
+*/
 template<class T>
 inline void AA_Vector<T>::clear()
 {
@@ -281,6 +314,11 @@ inline void AA_Vector<T>::clear()
 	vector_size = 0;
 }
 
+/**
+ * @brief Return true if size is 0 
+ * @tparam T 
+ * @return bool
+*/
 template<class T>
 inline bool AA_Vector<T>::empty()
 {
@@ -288,6 +326,11 @@ inline bool AA_Vector<T>::empty()
 	return false;
 }
 
+/**
+ * @brief Relocate to bigger space
+ * @tparam T 
+ * @return int
+*/
 template<class T>
 inline int AA_Vector<T>::resize()
 {
@@ -300,18 +343,33 @@ inline int AA_Vector<T>::resize()
 	return 0;
 }
 
+/**
+ * @brief Return current size of vec 
+ * @tparam T 
+ * @return int
+*/
 template<class T>
 inline int AA_Vector<T>::size()
 {
 	return vector_size;
 }
 
+/**
+ * @brief Return size of current allocated array  
+ * @tparam T 
+ * @return int
+*/
 template<class T>
 inline int AA_Vector<T>::capacity()
 {
 	return vector_capacity;
 }
 
+/**
+ * @brief erase a specific element from the vector
+ * @tparam T 
+ * @param it 1st parameter
+*/
 template<class T>
 inline void AA_Vector<T>::erase(iterator it)
 {
@@ -322,6 +380,13 @@ inline void AA_Vector<T>::erase(iterator it)
 	AA_Vector::erase(it, it);
 }
 
+/**
+ * @brief prints the elements
+ * @tparam T 
+ * @param out 1st parameter
+ * @param vec 2nd parameter
+ * @return ostream
+*/
 template<typename T>
 inline ostream& operator<<(ostream& out, const AA_Vector<T>& vec) {
 	for (int i = 0; i < vec.vector_size; ++i) {
